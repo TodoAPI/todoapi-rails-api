@@ -16,6 +16,12 @@ class Api::ListsController < ApplicationController
     end
   end
 
+  def show
+    list = List.find(params[:id])
+
+    render json: {list: list}
+  end
+
   private
 
   def list_params

@@ -33,6 +33,18 @@ class Api::ListsControllerTest < ActionController::TestCase
     assert_response 422
   end
 
+  test "GET show" do
+    name = "Books to Read"
+    list = List.create!(name: name)
+
+    get :show, id: list.id
+    assert_response 200
+
+    response_json = JSON.parse(response.body)
+    expected_json = {"list" => {"name" => name}}
+    assert_contains_subhash expected_json, response_json
+  end
+
   private
 
   def assert_contains_subhash(expected_subhash, actual)
