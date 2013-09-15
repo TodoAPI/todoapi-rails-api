@@ -10,7 +10,7 @@ class Api::ListsController < ApplicationController
     list = List.new(list_params)
 
     if list.save
-      render json: list, status: 201
+      render json: {list: list}, status: 201
     else
       render json: {error: "name must be unique"}, status: 422
     end

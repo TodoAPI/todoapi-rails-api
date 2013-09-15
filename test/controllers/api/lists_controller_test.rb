@@ -8,12 +8,17 @@ class Api::ListsControllerTest < ActionController::TestCase
   end
 
   test "POST create" do
+    name = "Books to Read"
     post :create, {
       list: {
-        name: "Books to Read"
+        name: name
       }
     }
     assert_response 201
+
+    response_json = JSON.parse(response.body)
+    expected_json = {"list" => {"name" => name}}
+    assert_contains_subhash expected_json, response_json
   end
 
   test "POST create - validation" do
@@ -26,5 +31,11 @@ class Api::ListsControllerTest < ActionController::TestCase
       }
     }
     assert_response 422
+  end
+
+  private
+
+  def assert_contains_subhash(expected_subhash, actual)
+    assert_equal actual, actual.deep_merge(expected_subhash)
   end
 end
