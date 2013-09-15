@@ -7,3 +7,8 @@ gem 'sqlite3'
 
 # Server
 gem 'unicorn-rails'
+
+group :test do
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
+end
