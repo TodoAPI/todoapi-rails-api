@@ -9,7 +9,7 @@ class Api::ListsControllerTest < ActionController::TestCase
 
   test "POST create" do
     post :create, {
-      post: {
+      list: {
         name: "Books to Read"
       }
     }
