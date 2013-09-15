@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130915155238) do
+ActiveRecord::Schema.define(version: 20130915161947) do
 
   create_table "lists", force: true do |t|
     t.string   "name"
@@ -20,5 +20,15 @@ ActiveRecord::Schema.define(version: 20130915155238) do
   end
 
   add_index "lists", ["name"], name: "index_lists_on_name", unique: true
+
+  create_table "tasks", force: true do |t|
+    t.string   "title"
+    t.boolean  "is_complete"
+    t.integer  "list_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tasks", ["list_id", "title"], name: "index_tasks_on_list_id_and_title", unique: true
 
 end
