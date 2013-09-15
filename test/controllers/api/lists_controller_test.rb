@@ -6,4 +6,13 @@ class Api::ListsControllerTest < ActionController::TestCase
     get :index
     assert_response :success
   end
+
+  test "POST create" do
+    post :create, {
+      post: {
+        name: "Books to Read"
+      }
+    }
+    assert_response 201
+  end
 end

@@ -5,4 +5,10 @@ class Api::ListsController < ApplicationController
       lists: []
     }
   end
+
+  def create
+    render json: {
+      list: {}
+    }, status: 201
+  end
 end
