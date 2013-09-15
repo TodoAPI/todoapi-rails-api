@@ -15,4 +15,16 @@ class Api::ListsControllerTest < ActionController::TestCase
     }
     assert_response 201
   end
+
+  test "POST create - validation" do
+    name = "Books to Read"
+    duplicate = List.create!(name: name)
+
+    post :create, {
+      list: {
+        name: name
+      }
+    }
+    assert_response 422
+  end
 end

@@ -7,8 +7,13 @@ class Api::ListsController < ApplicationController
   end
 
   def create
-    list = List.create!(list_params)
-    render json: list, status: 201
+    list = List.new(list_params)
+
+    if list.save
+      render json: list, status: 201
+    else
+      render json: {error: "name must be unique"}, status: 422
+    end
   end
 
   private

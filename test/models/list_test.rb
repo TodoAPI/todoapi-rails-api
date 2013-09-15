@@ -1,7 +1,11 @@
 require 'test_helper'
 
 class ListTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "uniqueness" do
+    name = "Books to Read"
+    List.create!(name: name)
+
+    duplicate = List.new(name: name)
+    assert !duplicate.valid?
+  end
 end
